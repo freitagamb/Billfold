@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:hint="Name"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/amount"
+        android:hint="Amount" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Reoccurs every"
+            android:id="@+id/reoccurs"
+            android:checked="false" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/freq_num"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical" />
+
+        <Spinner
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/frequency"
+            android:spinnerMode="dropdown"
+            android:layout_gravity="right" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/submitBill"
+        android:layout_gravity="center_horizontal"
+        android:onClick="viewBills" />
+
+</LinearLayout>
