@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Billfold</string>
+
+    <!-- Reoccuring Strings -->
+    <string-array name="frequency_array">
+        <item>Days</item>
+        <item>Weeks</item>
+        <item>Months</item>
+        <item>Years</item>
+    </string-array>
+
+
+    <!-- Menu Strings -->
+    <string name="action_home">Home</string>
+    <string name="action_bills">Bills</string>
+    <string name="action_people">People</string>
+    <string name="action_settings">Settings</string>
+</resources>
