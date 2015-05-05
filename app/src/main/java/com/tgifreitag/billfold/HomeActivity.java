@@ -9,16 +9,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 
 public class HomeActivity extends Activity {
 
-  //  DBAdapter myDB;
+    DBAdapter db = new DBAdapter(this);
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
@@ -30,7 +33,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
 
         // get the bills list
-        expListView = (ExpandableListView) findViewById(R.id.bills_list);
+        expListView = (ExpandableListView) findViewById(R.id.bills_ExpandableList);
 
         // preparing list data
         prepareListData();
@@ -39,6 +42,16 @@ public class HomeActivity extends Activity {
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
+
+        db.open();
+        long newRecord = db.insertRecord("Utilities", "5/4/15", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
+        Cursor c = db.getRecord(1);
+        Toast.makeText(this,"Bill Name: " + c.getString(1) + " Added!" , Toast.LENGTH_SHORT).show();
+
+        newRecord = db.insertRecord("Rent", "6/1/15", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
+        c = db.getRecord(2);
+        Toast.makeText(this,"Bill Name: " + c.getString(1) + " Added!" , Toast.LENGTH_SHORT).show();
+        db.close();
     }
 /*
     private void openDB() {
@@ -72,28 +85,57 @@ public class HomeActivity extends Activity {
         listDataHeader.add("Other");
 
         // Adding child data
+
         List<String> today = new ArrayList<String>();
-        // Select all bills where due date == current Date
-        // Add Name to todayArray
-        today.add("Stars Card");
-
         List<String> tomorrow = new ArrayList<String>();
-
         List<String> thisWeek = new ArrayList<String>();
+        List<String> nextWeek = new ArrayList<String>();
+        List<String> thisMonth = new ArrayList<String>();
+        List<String> other = new ArrayList<String>();
+
+        //Get Today's Date
+        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yy");
+        String todayDate = sdf.format(new Date());
+        Log.d("DBAdapterBills",todayDate);
+        db.open();
+
+        // Set Today's Bills
+        Cursor c = db.findRecordByDate(" LIKE ", todayDate);
+        Log.d("DBAdapterBills", "today = " + c.getString(0));
+        if (c.moveToFirst())
+        {
+            do {
+                today.add(c.getString(0));
+            } while (c.moveToNext());
+        }
+
+        // Set Tomorrow's Bills
+        Date tomorrowDate = todayDate.parse(sourceDate);
+        tomorrowDate = DateUtil.addDays(myDate, 1);
+        c = db.findRecordByDate(" LIKE ",todayDate);
+        Log.d("DBAdapterBills","today = " +c.getString(0));
+        if (c.moveToFirst())
+        {
+            do {
+                today.add(c.getString(0));
+            } while (c.moveToNext());
+        }
+
+
+
+
         thisWeek.add("Utilities");
         thisWeek.add("Rent");
         thisWeek.add("Internet");
 
-        List<String> nextWeek = new ArrayList<String>();
+
         nextWeek.add("Crossfit");
         nextWeek.add("Car Insurance");
         nextWeek.add("Truck Insurance");
 
-        List<String> thisMonth = new ArrayList<String>();
         thisMonth.add("Dental Insurance");
         thisMonth.add("Medical Insurance");
 
-        List<String> other = new ArrayList<String>();
         other.add("Spotify");
         other.add("Netflix");
 

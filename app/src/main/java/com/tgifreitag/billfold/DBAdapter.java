@@ -146,6 +146,19 @@ public class DBAdapter {
 		return mCursor;
 	}
 
+	//---finds a particular record---
+	public Cursor findRecordByDate(String op, String todayDate) throws SQLException
+	{
+		Cursor mCursor =
+				db.query(true, DATABASE_TABLE, new String[] {KEY_BILLNAME},
+						KEY_DUEDATE + op + "'" + todayDate + "'", null, null, null, null, null);
+		if (mCursor != null) {
+			mCursor.moveToFirst();
+		}
+		Log.d(TAG,"End of findRecordByDate, " + mCursor.getCount());
+		return mCursor;
+	}
+
 	//---updates a record---
 	public boolean updateRecord(long rowId, String billName, String duedate, String
 			payeeID, String amount, String start, String end, String payor1ID, String payor1pct, String notes)

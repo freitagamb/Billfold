@@ -26,24 +26,15 @@ public class BillsActivity extends Activity {
         setContentView(R.layout.activity_bills);
 
         db.open();
-        long newRecord = db.insertRecord("Utilities", "2/18/2015", "03", "67.34", "3/4/2013","3/4/2017","01",".1","My notes");
         Cursor c = db.getRecord(1);
-        Toast.makeText(this,"Bill Name: " + c.getString(1) + " Added!" , Toast.LENGTH_SHORT).show();
-
-        newRecord = db.insertRecord("Rent", "6/1/2015", "14", "179.00", "7/1/2012", "7/1/2017", "01", ".1", "My super cool notes");
-        c = db.getRecord(2);
-        Toast.makeText(this,"Bill Name: " + c.getString(1) + " Added!" , Toast.LENGTH_SHORT).show();
-
-      //  c = db.getAllRecords();
-        Log.d("DBAdapterBills", "Records stored in cursor");
-/*
         if (c.moveToFirst())
         {
             do {
                 TextView billNameTxt = (TextView) findViewById(R.id.billNametxt);
                 billNameTxt.setText(c.getString(2));
             } while (c.moveToNext());
-        }*/
+        }
+        db.close();
     }
 
     public void addNewBill(View v) {
