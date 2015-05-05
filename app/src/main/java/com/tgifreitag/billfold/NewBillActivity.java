@@ -38,10 +38,11 @@ public class NewBillActivity  extends FragmentActivity{
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
     }
-/*
+
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+        newFragment.show(getFragmentManager(),"datePicker");
+        //newFragment.show(getSupportFragmentManager(),"datePicker");
     }
 
     public static class DatePickerFragment extends DialogFragment
@@ -63,10 +64,10 @@ public class NewBillActivity  extends FragmentActivity{
             // Do something with the date chosen by the user
         }
     }
-*/
+
     public void submitNewBill(View v)
     {
-        Log.d("AddingNewBill", "adding");
+        Log.d("DBAdapterBills", "adding");
         //get data from form
         EditText billNameTxt = (EditText)findViewById(R.id.editBillName);
         EditText dueDateTxt = (EditText)findViewById(R.id.editDueDate);
