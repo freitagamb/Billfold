@@ -2,7 +2,9 @@ package com.tgifreitag.billfold;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class HomeActivity extends Activity {
 
-    DBAdapter myDB;
+  //  DBAdapter myDB;
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
@@ -27,10 +29,8 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        openDB();
-
-        // get the listview
-        expListView = (ExpandableListView) findViewById(R.id.due_list);
+        // get the bills list
+        expListView = (ExpandableListView) findViewById(R.id.bills_list);
 
         // preparing list data
         prepareListData();
@@ -40,7 +40,7 @@ public class HomeActivity extends Activity {
         // setting list adapter
         expListView.setAdapter(listAdapter);
     }
-
+/*
     private void openDB() {
         myDB = new DBAdapter(this);
         myDB.open();
@@ -54,7 +54,7 @@ public class HomeActivity extends Activity {
 
     private void closeDB() {
         myDB.close();
-    }
+    }*/
 
     /*
      * Preparing the list data
@@ -147,7 +147,17 @@ public class HomeActivity extends Activity {
     }
 
     public void billsClickHandler(MenuItem item) {
-        Intent billsIntent = new Intent(this, BillsActivity.class);
-        startActivity(billsIntent);
+        Intent i = new Intent(this, BillsActivity.class);
+        startActivity(i);
+    }
+
+    public void homeClickHandler(MenuItem item) {
+        Intent i = new Intent(this, HomeActivity.class);
+        startActivity(i);
+    }
+
+    public void peopleClickHandler(MenuItem item) {
+        Intent i = new Intent(this, PeopleActivity.class);
+        startActivity(i);
     }
 }

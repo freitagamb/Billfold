@@ -5,7 +5,8 @@
         android:id="@+id/action_home"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_home" />
+        android:title="@string/action_home"
+        android:onClick="homeClickHandler"/>
     <item
         android:id="@+id/action_bills"
         android:orderInCategory="100"
@@ -16,7 +17,8 @@
         android:id="@+id/action_people"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_people" />
+        android:title="@string/action_people"
+        android:onClick="peopleClickHandler"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

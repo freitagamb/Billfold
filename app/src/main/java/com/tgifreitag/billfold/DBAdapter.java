@@ -9,11 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBAdapter {
-	private static final String DATABASE_NAME = "BillfoldDB";
-	private static final int DATABASE_VERSION = 2;
+
 
 	// ---------------- Bills Table ---------------- //
-	private static final String BILLS_TABLE = "bills";
 
 	// Bills Columns //
 	public static final String KEY_ROWID = "id";
@@ -28,10 +26,26 @@ public class DBAdapter {
 	public static final String KEY_NOTES = "notes";
 	private static final String TAG = "DBAdapterBills";
 
+	private static final String DATABASE_NAME = "BillfoldDB";
+	private static final String DATABASE_TABLE = "bills";
+	private static final int DATABASE_VERSION = 4;
+
+	/*
+	// ---------------- Payor Table ---------------- //
+	private static final String PAYOR_TABLE = "payor";
+
+	// Payor Columns //
+	public static final String KEY_ROWID = "id";
+	public static final String KEY_FNAME = "firstName";
+	public static final String KEY_LNAME = "lastName";
+	public static final String KEY_PHONE = "phone";
+	public static final String KEY_EMAIL = "email";
+	public static final String KEY_NOTES = "notes";
+	private static final String TAG_PAYOR = "DBAdapterPayor";
+*/
 
 	private static final String DATABASE_CREATE =
-			"create table if not exists assignments (id integer primary ke autoincrement, "
-			+ "billName VARCHAR not null, duedate date, payeeID VARCHAR, notes VARCHAR);";
+			"create table if not exists "+ DATABASE_TABLE +" (id integer primary key autoincrement, billName VARCHAR not null, duedate date, payeeID integer, amount VARCHAR, start date, end date, payor1ID integer, payor1pct VARCHAR, notes VARCHAR);";
 
 	private final Context context;
 
@@ -56,7 +70,9 @@ public class DBAdapter {
 		{
 			try {
 				db.execSQL(DATABASE_CREATE);
+				Log.d(TAG, "Database created");
 			} catch (SQLException e) {
+				Log.d(TAG, "Exception was found on db create");
 				e.printStackTrace();
 			}
 		}
@@ -66,7 +82,7 @@ public class DBAdapter {
 		{
 			Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
 					+ newVersion + ", which will destroy all old data");
-			db.execSQL("DROP TABLE IF EXISTS contacts");
+			db.execSQL("DROP TABLE IF EXISTS bills");
 			onCreate(db);
 		}
 	}
@@ -85,7 +101,7 @@ public class DBAdapter {
 	}
 
 	//---insert a record into the database---
-	public long insertRecord(String table, String billName, String duedate, String
+	public long insertRecord(String billName, String duedate, String
 			payeeID, String amount, String start, String end, String payor1ID, String payor1pct, String notes)
 	{
 		ContentValues initialValues = new ContentValues();
@@ -98,19 +114,22 @@ public class DBAdapter {
 		initialValues.put(KEY_PAYOR1_ID, payor1ID);
 		initialValues.put(KEY_PAYOR1_PCT, payor1pct);
 		initialValues.put(KEY_NOTES, notes);
-		return db.insert(table, null, initialValues);
+		Log.d(TAG, "insert Record completed successfully");
+		return db.insert(DATABASE_TABLE, null, initialValues);
+
 	}
 
 	//---deletes a particular record---
 	public boolean deleteBill(long rowId)
 	{
-		return db.delete(BILLS_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
+		return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
 	}
 
 	//---retrieves all the records---
 	public Cursor getAllRecords()
 	{
-		return db.query(BILLS_TABLE, new String[] {KEY_ROWID, KEY_BILLNAME,
+		Log.d(TAG, "Beginning of getAllRecords");
+		return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_BILLNAME,
 						KEY_DUEDATE, KEY_PAYEEID, KEY_AMOUNT, KEY_START, KEY_END, KEY_PAYOR1_ID, KEY_PAYOR1_PCT, KEY_NOTES}, null, null, null, null, null, null);
 	}
 
@@ -118,8 +137,8 @@ public class DBAdapter {
 	public Cursor getRecord(long rowId) throws SQLException
 	{
 		Cursor mCursor =
-				db.query(true, BILLS_TABLE, new String[] {KEY_ROWID,
-								KEY_BILLNAME, KEY_DUEDATE, KEY_PAYEEID, KEY_NOTES},
+				db.query(true, DATABASE_TABLE, new String[] {KEY_ROWID, KEY_BILLNAME,
+								KEY_DUEDATE, KEY_PAYEEID, KEY_AMOUNT, KEY_START, KEY_END, KEY_PAYOR1_ID, KEY_PAYOR1_PCT, KEY_NOTES},
 						KEY_ROWID + "=" + rowId, null, null, null, null, null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
@@ -141,6 +160,6 @@ public class DBAdapter {
 		args.put(KEY_PAYOR1_ID, payor1ID);
 		args.put(KEY_PAYOR1_PCT, payor1pct);
 		args.put(KEY_NOTES, notes);
-		return db.update(BILLS_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+		return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 	}
 }

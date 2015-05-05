@@ -1,55 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:scrollbars="vertical">
 
     <EditText
+        android:id="@+id/editBillName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name"
-        android:hint="Name"/>
+        android:hint="Name" />
 
     <EditText
+        android:id="@+id/editAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/amount"
-        android:hint="Amount" />
+        android:hint="Amount"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/editPayeeID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PayeeID" />
+
+    <EditText
+        android:id="@+id/editDueDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Due Date"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/editStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start Date"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/editEnd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="End Date"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/editPayor1ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Payor 1 ID"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editPayor1pct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Payor 1 Percent"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/editNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notes"
+        android:inputType="textAutoCorrect" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <CheckBox
+            android:id="@+id/reoccurs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Reoccurs every"
-            android:id="@+id/reoccurs"
-            android:checked="false" />
+            android:checked="false"
+            android:hint="Reoccurs every" />
 
         <NumberPicker
+            android:id="@+id/freq_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/freq_num"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical" />
 
         <Spinner
+            android:id="@+id/frequency"
             android:layout_width="158dp"
             android:layout_height="wrap_content"
-            android:id="@+id/frequency"
-            android:spinnerMode="dropdown"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <Button
+        android:id="@+id/submitBill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
-        android:id="@+id/submitBill"
         android:layout_gravity="center_horizontal"
-        android:onClick="viewBills" />
+        android:onClick="submitNewBill"
+        android:text="Done" />
 
 </LinearLayout>
+</ScrollView>
