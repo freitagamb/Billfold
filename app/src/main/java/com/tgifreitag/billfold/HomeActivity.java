@@ -3,6 +3,7 @@ package com.tgifreitag.billfold;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -43,35 +44,9 @@ public class HomeActivity extends Activity {
         // setting list adapter
         expListView.setAdapter(listAdapter);
 
-        db.open();
-        long newRecord = db.insertRecord("Utilities", "5/4/15", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
-        Cursor c = db.getRecord(1);
-        Toast.makeText(this,"Bill Name: " + c.getString(1) + " Added!" , Toast.LENGTH_SHORT).show();
-
-        newRecord = db.insertRecord("Rent", "6/1/15", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
-        c = db.getRecord(2);
-        Toast.makeText(this,"Bill Name: " + c.getString(1) + " Added!" , Toast.LENGTH_SHORT).show();
-        db.close();
-    }
-/*
-    private void openDB() {
-        myDB = new DBAdapter(this);
-        myDB.open();
+       // populateDB(db);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        closeDB();
-    }
-
-    private void closeDB() {
-        myDB.close();
-    }*/
-
-    /*
-     * Preparing the list data
-     */
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
@@ -82,7 +57,6 @@ public class HomeActivity extends Activity {
         listDataHeader.add("Due This Week");
         listDataHeader.add("Due Next Week");
         listDataHeader.add("Due This Month");
-        listDataHeader.add("Other");
 
         // Adding child data
 
@@ -91,60 +65,87 @@ public class HomeActivity extends Activity {
         List<String> thisWeek = new ArrayList<String>();
         List<String> nextWeek = new ArrayList<String>();
         List<String> thisMonth = new ArrayList<String>();
-        List<String> other = new ArrayList<String>();
+
+        // Set Todays Date and Dates variable for calculations
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date todayDate = new Date();
+        Dates temp = new Dates();
 
         //Get Today's Date
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yy");
-        String todayDate = sdf.format(new Date());
-        Log.d("DBAdapterBills",todayDate);
+        String dateString = sdf.format(todayDate);
+        Log.d("DBAdapterBills","(Today's) Date String is " + dateString);
+
         db.open();
 
         // Set Today's Bills
-        Cursor c = db.findRecordByDate(" LIKE ", todayDate);
-        Log.d("DBAdapterBills", "today = " + c.getString(0));
+     //  Cursor c = db.findRecordWHERE("KEY_DUEDATE + ' LIKE ' + '" + dateString + "'");
+         Cursor c = db.findRecordByDate(" LIKE ", dateString);
         if (c.moveToFirst())
         {
+            Log.d("DBAdapterBills", "today = " + c.getString(0));
             do {
                 today.add(c.getString(0));
             } while (c.moveToNext());
         }
 
         // Set Tomorrow's Bills
-        Date tomorrowDate = todayDate.parse(sourceDate);
-        tomorrowDate = DateUtil.addDays(myDate, 1);
-        c = db.findRecordByDate(" LIKE ",todayDate);
-        Log.d("DBAdapterBills","today = " +c.getString(0));
-        if (c.moveToFirst())
-        {
+        Date tomorrowDate = temp.addDay(todayDate, 1);
+        dateString = sdf.format(tomorrowDate);
+        Log.d("DBAdapterBills","tomorrow is = " +dateString);
+        c = db.findRecordByDate(" LIKE ",dateString);
+        if (c.moveToFirst()) {
             do {
-                today.add(c.getString(0));
+                tomorrow.add(c.getString(0));
+                } while (c.moveToNext());
+        }
+        c.close();
+
+        // Set This Week's Bills
+        Date weekStart = temp.weekStart(todayDate,0);
+        Date weekEnd = temp.weekEnd(todayDate,0);
+        String sWeekString = sdf.format(weekStart);
+        String eWeekString = sdf.format(weekEnd);
+        Log.d("DBAdapterBills","sWeekString is = " +sWeekString);
+        Log.d("DBAdapterBills", "eWeekString is = " + eWeekString);
+        c = db.findRecordBetween(sWeekString, eWeekString);
+        if (c.moveToFirst()) {
+            do {
+                thisWeek.add(c.getString(0));
             } while (c.moveToNext());
         }
+        c.close();
 
+        // Set Next Week's Bills
+        weekStart = temp.weekStart(todayDate, 7);
+        weekEnd = temp.weekEnd(todayDate, 7);
 
+        sWeekString = sdf.format(weekStart);
+        eWeekString = sdf.format(weekEnd);
+        Log.d("DBAdapterBills","sNextWeekString is = " +sWeekString);
+        Log.d("DBAdapterBills", "eNextWeekString is = " + eWeekString);
+        c = db.findRecordBetween(sWeekString, eWeekString);
+        if (c.moveToFirst()) {
+            do {
+                nextWeek.add(c.getString(0));
+            } while (c.moveToNext());
+        }
+        c.close();
 
-
-        thisWeek.add("Utilities");
-        thisWeek.add("Rent");
-        thisWeek.add("Internet");
-
-
-        nextWeek.add("Crossfit");
-        nextWeek.add("Car Insurance");
-        nextWeek.add("Truck Insurance");
-
-        thisMonth.add("Dental Insurance");
-        thisMonth.add("Medical Insurance");
-
-        other.add("Spotify");
-        other.add("Netflix");
+        // Set This Month's Bills
+        String month = temp.thisMonth(todayDate);
+        c = db.findMonth(dateString, month);
+        if (c.moveToFirst()) {
+            do {
+                thisMonth.add(c.getString(0));
+            } while (c.moveToNext());
+        }
+        c.close();
 
         listDataChild.put(listDataHeader.get(0), today); // Header, Child data
         listDataChild.put(listDataHeader.get(1), tomorrow);
         listDataChild.put(listDataHeader.get(2), thisWeek);
         listDataChild.put(listDataHeader.get(3), nextWeek);
         listDataChild.put(listDataHeader.get(4), thisMonth);
-        listDataChild.put(listDataHeader.get(5), other);
 
         // Listview on child click listener
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -163,8 +164,29 @@ public class HomeActivity extends Activity {
                 return false;
             }
         });
-}
+    }
+    public void populateDB(View v)
+    {
+        db.open();
+        db.insertRecord("Tomorrow 1 - 5/6", "2015-05-06", "03", "67.34", "3/4/13", "3/4/17", "01", ".1", "My notes");
+        db.insertRecord("Tomorrow 2 - 5/6", "2015-05-06", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
+        db.insertRecord("Today 1 - 5/5", "2015-05-05", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
+        db.insertRecord("Today 2 - 5/5", "2015-05-05", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
+        db.insertRecord("Next Month - 6/1", "2015-06-01", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
+        db.insertRecord("Earlier This Week 5/4", "2015-05-04", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
+        db.insertRecord("This Week 1 - 5/7", "2015-05-07", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
+        db.insertRecord("Next Week 2 - 5/12", "2015-05-12", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
+        db.insertRecord("This Month 5/27", "2015-05-27", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
+        db.insertRecord("Other 1 - 8/3", "2015-08-03", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
+        db.insertRecord("Other 2 - 10/4", "2015-10-04", "03", "67.34", "3/4/13", "3/4/17", "01", ".1", "My notes");
+        recreate();
+    }
 
+    public void clearAllBills(View v) {
+        db.deleteAllRecords();
+        db.open();
+        recreate();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,4 +224,5 @@ public class HomeActivity extends Activity {
         Intent i = new Intent(this, PeopleActivity.class);
         startActivity(i);
     }
+
 }

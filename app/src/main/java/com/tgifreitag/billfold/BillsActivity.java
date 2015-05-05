@@ -31,7 +31,7 @@ public class BillsActivity extends Activity {
         {
             do {
                 TextView billNameTxt = (TextView) findViewById(R.id.billNametxt);
-                billNameTxt.setText(c.getString(2));
+                billNameTxt.setText(c.getString(1));
             } while (c.moveToNext());
         }
         db.close();

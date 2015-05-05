@@ -28,24 +28,10 @@ public class DBAdapter {
 
 	private static final String DATABASE_NAME = "BillfoldDB";
 	private static final String DATABASE_TABLE = "bills";
-	private static final int DATABASE_VERSION = 4;
-
-	/*
-	// ---------------- Payor Table ---------------- //
-	private static final String PAYOR_TABLE = "payor";
-
-	// Payor Columns //
-	public static final String KEY_ROWID = "id";
-	public static final String KEY_FNAME = "firstName";
-	public static final String KEY_LNAME = "lastName";
-	public static final String KEY_PHONE = "phone";
-	public static final String KEY_EMAIL = "email";
-	public static final String KEY_NOTES = "notes";
-	private static final String TAG_PAYOR = "DBAdapterPayor";
-*/
+	private static final int DATABASE_VERSION = 5;
 
 	private static final String DATABASE_CREATE =
-			"create table if not exists "+ DATABASE_TABLE +" (id integer primary key autoincrement, billName VARCHAR not null, duedate date, payeeID integer, amount VARCHAR, start date, end date, payor1ID integer, payor1pct VARCHAR, notes VARCHAR);";
+			"create table if not exists "+ DATABASE_TABLE +" (id integer primary key autoincrement, billName VARCHAR not null, duedate DATE, payeeID INT, amount VARCHAR, start DATE, end DATE, payor1ID INT, payor1pct DECIMAL, notes VARCHAR);";
 
 	private final Context context;
 
@@ -86,12 +72,18 @@ public class DBAdapter {
 			onCreate(db);
 		}
 	}
-
 	//---opens the database---
 	public DBAdapter open() throws SQLException
 	{
 		db = DBHelper.getWritableDatabase();
 		return this;
+	}
+
+	//---deleteAllRecords the database---
+	public long deleteAllRecords()
+	{
+		Log.d(TAG, "All Records Deleted");
+		return db.delete(DATABASE_TABLE, null, null);
 	}
 
 	//---closes the database---
@@ -128,9 +120,8 @@ public class DBAdapter {
 	//---retrieves all the records---
 	public Cursor getAllRecords()
 	{
-		Log.d(TAG, "Beginning of getAllRecords");
 		return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_BILLNAME,
-						KEY_DUEDATE, KEY_PAYEEID, KEY_AMOUNT, KEY_START, KEY_END, KEY_PAYOR1_ID, KEY_PAYOR1_PCT, KEY_NOTES}, null, null, null, null, null, null);
+				KEY_DUEDATE, KEY_PAYEEID, KEY_AMOUNT, KEY_START, KEY_END, KEY_PAYOR1_ID, KEY_PAYOR1_PCT, KEY_NOTES}, null, null, null, null, null, null);
 	}
 
 	//---retrieves a particular record---
@@ -156,6 +147,32 @@ public class DBAdapter {
 			mCursor.moveToFirst();
 		}
 		Log.d(TAG,"End of findRecordByDate, " + mCursor.getCount());
+		return mCursor;
+	}
+
+	//---finds a particular record---
+	public Cursor findRecordBetween(String date1, String date2) throws SQLException
+	{
+		Cursor mCursor =
+				db.query(true, DATABASE_TABLE, new String[] {KEY_BILLNAME},
+						KEY_DUEDATE + " BETWEEN '" + date1 + "' AND '" + date2 + "'", null, null, null, null, null);
+		if (mCursor != null) {
+			mCursor.moveToFirst();
+		}
+		Log.d(TAG,"End of findRecordBetween, " + mCursor.getCount());
+		return mCursor;
+	}
+
+	//---finds a particular record---
+	public Cursor findMonth(String dateString, String month) throws SQLException
+	{
+		Cursor mCursor =
+				db.query(true, DATABASE_TABLE, new String[] {KEY_BILLNAME},
+						"strftime('%m', "+KEY_DUEDATE+ ") = '" + month + "'", null, null, null, null, null);
+		if (mCursor != null) {
+			mCursor.moveToFirst();
+		}
+		Log.d(TAG,"End of findMonth, " + mCursor.getCount());
 		return mCursor;
 	}
 
