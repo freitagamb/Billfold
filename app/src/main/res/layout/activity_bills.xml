@@ -1,101 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".BillsActivity">
 
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/bills_CardView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:id="@+id/billsRelLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <ImageView
-                android:id="@+id/dateSquareBorder"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_marginRight="16dp"
-                android:background="@color/lt_teal"
-                />
-            <ImageView
-                android:id="@+id/dateSquare"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp"
-                android:background="@color/tangerine"
-                />
-
-            <TextView
-                android:id="@+id/monthName"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/dateSquare"
-                android:text="FEB"
-                android:paddingLeft="3dp"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/dk_brown"
-                android:alpha=".40"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/dayNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/dateSquare"
-                android:layout_alignEnd="@+id/dateSquare"
-                android:paddingRight="3dp"
-                android:layout_marginTop="12dp"
-                android:text="25"
-                android:textColor="@color/sage"
-                android:textSize="35sp"/>
-
-            <TextView
-
-                android:id="@+id/billNametxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_toRightOf="@+id/dateSquare"
-                android:layout_alignTop="@+id/dateSquare"
-                android:text="Bill Name"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/amounttxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/billNametxt"
-                android:layout_toRightOf="@+id/dateSquare"
-                android:text="$ 278.43" />
-
-            <Button
-                android:id="@+id/payBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pay"
-                android:backgroundTint="@color/lt_teal"
-                android:textColor="@color/dk_brown"
-                android:layout_alignTop="@+id/dateSquare"
-                android:layout_alignParentEnd="true" />
-
-        </RelativeLayout>
-
-
-    </android.support.v7.widget.CardView>
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"/>
 
     <Button
         android:id="@+id/addNewBill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="20dp"
         android:onClick="addNewBill"
         android:text="Add Bill" />

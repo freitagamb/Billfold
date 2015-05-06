@@ -26,6 +26,14 @@ public class Dates{
         cal.add(Calendar.YEAR, i);
         return cal.getTime();
     }
+/*
+    public static String getMonthName(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        String month = cal.get(Calendar."FEB";
+        return month;
+    }*/
 
     public static Date weekStart(Date date,int i) {
         Calendar cal = Calendar.getInstance();

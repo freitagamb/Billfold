@@ -8,6 +8,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Locale;
+
 public class DBAdapter {
 
 
@@ -172,7 +181,7 @@ public class DBAdapter {
 		if (mCursor != null) {
 			mCursor.moveToFirst();
 		}
-		Log.d(TAG,"End of findMonth, " + mCursor.getCount());
+		Log.d(TAG, "End of findMonth, " + mCursor.getCount());
 		return mCursor;
 	}
 
@@ -191,5 +200,35 @@ public class DBAdapter {
 		args.put(KEY_PAYOR1_PCT, payor1pct);
 		args.put(KEY_NOTES, notes);
 		return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+	}
+
+	public List<BillsInfo> getAllData(){
+		Cursor c = this.getAllRecords();
+		List<BillsInfo> rows = new ArrayList<>();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		if(c.moveToFirst())
+		{
+			do {
+				Date date = null;
+				try {
+					date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(c.getString(2));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				String billName = c.getString(1);
+				String monthName = (String)android.text.format.DateFormat.format("MMMM", date);
+				Log.d("BillAdapterDB",monthName );
+				String dayNum = (String) android.text.format.DateFormat.format("d", date);
+				String amount = "$ " + c.getString(3);
+
+
+				//rows.add(current);
+				rows.add(new BillsInfo(billName, monthName, dayNum, amount));
+			}while (c.moveToNext());
+		}
+		return rows;
+
 	}
 }

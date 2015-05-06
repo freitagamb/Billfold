@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bills_CardView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    card_view:cardCornerRadius="4dp"
+    android:layout_margin="5dp"
+    android:smoothScrollbar="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/dk_teal"
+        android:scrollbars="vertical"
+        android:padding="10dp"
+        android:backgroundTint="#CFD8DC">
+
+        <ImageView
+            android:id="@+id/dateSquareBorder"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/lt_teal"
+            />
+        <ImageView
+            android:id="@+id/dateSquare"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="16dp"
+            android:background="@color/tangerine"
+            />
+
+        <TextView
+            android:id="@+id/monthNametxt"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dateSquare"
+            android:text="FEB"
+            android:paddingLeft="3dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/dk_brown"
+            android:alpha=".40"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/dayNumtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/dateSquare"
+            android:layout_alignEnd="@+id/dateSquare"
+            android:paddingRight="3dp"
+            android:layout_marginTop="12dp"
+            android:text="25"
+            android:textColor="@color/sage"
+            android:textSize="35sp"/>
+
+        <TextView
+
+            android:id="@+id/billNametxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/dateSquare"
+            android:layout_alignTop="@+id/dateSquare"
+            android:text="Bill Name"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/amounttxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/billNametxt"
+            android:layout_toRightOf="@+id/dateSquare"
+            android:text="$ 278.43" />
+
+        <Button
+            android:id="@+id/payBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay"
+            android:backgroundTint="@color/lt_teal"
+            android:textColor="@color/dk_brown"
+            android:layout_alignTop="@+id/dateSquare"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

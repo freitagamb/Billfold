@@ -9,18 +9,18 @@
         <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-4800d978f757aa740548389f61889aa66a7ee0f5.jar" />
     </item>
     <item
-        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-7cc0965503392e7f53b51f4bf59bceb703f51a58.jar" />
-    </item>
-    <item
         jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
         <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-e6c04fef9d05d8459011d1878aabc365d80a7bdf.jar" />
+    </item>
+    <item
+        jar="D:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-34a57f82165fcc191123ae4d70b3d0379c72c265.jar" />
     </item>
     <item
         jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\libs\internal_impl-21.0.3.jar"
@@ -30,11 +30,11 @@
         <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-4676889646508841522e647d07d79f7beb5b03c0.jar" />
     </item>
     <item
-        jar="D:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-34a57f82165fcc191123ae4d70b3d0379c72c265.jar" />
+        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-7cc0965503392e7f53b51f4bf59bceb703f51a58.jar" />
     </item>
 
 </items>
