@@ -218,13 +218,9 @@ public class DBAdapter {
 					e.printStackTrace();
 				}
 				String billName = c.getString(1);
-				String monthName = (String)android.text.format.DateFormat.format("MMMM", date);
-				Log.d("BillAdapterDB",monthName );
+				String monthName = (String)android.text.format.DateFormat.format("MMM", date);
 				String dayNum = (String) android.text.format.DateFormat.format("d", date);
-				String amount = "$ " + c.getString(3);
-
-
-				//rows.add(current);
+				String amount = "$ " + c.getString(4);
 				rows.add(new BillsInfo(billName, monthName, dayNum, amount));
 			}while (c.moveToNext());
 		}

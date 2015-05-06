@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
@@ -14,12 +13,14 @@
             android:id="@+id/editBillName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:hint="Name" />
 
         <EditText
             android:id="@+id/editAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/editBillName"
             android:ems="10"
             android:hint="Amount"
             android:inputType="numberDecimal" />
@@ -28,47 +29,60 @@
             android:id="@+id/editPayeeID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/editAmount"
             android:hint="PayeeID" />
 
-        <EditText
-            android:id="@+id/editDueDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Due Date"
-            android:inputType="date" />
-
         <Button
+            android:id="@+id/dueDatePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DATE"
-            android:id="@+id/datePicker"
-            android:onClick="showDatePickerDialog" />
+            android:layout_below="@id/editPayeeID"
+            android:onClick="showDatePickerDialog"
+            android:text="Due Date" />
 
-        <EditText
-            android:id="@+id/editStart"
+        <TextView
+            android:id="@+id/tvDueDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/editPayeeID"
+            android:layout_toEndOf="@id/dueDatePicker"
+            android:hint="Due Date"
+            android:inputType="date"
+            android:paddingLeft="20dp" />
+
+        <Button
+            android:id="@+id/startDatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dueDatePicker"
+            android:onClick="showDatePickerDialog"
             android:hint="Start Date"
             android:inputType="date" />
 
-        <EditText
-            android:id="@+id/editEnd"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/endDatePicker"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/dueDatePicker"
+            android:layout_toEndOf="@id/startDatePicker"
+            android:onClick="showDatePickerDialog"
             android:hint="End Date"
             android:inputType="date" />
 
         <EditText
             android:id="@+id/editPayor1ID"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/endDatePicker"
             android:hint="Payor 1 ID"
             android:inputType="number" />
 
         <EditText
             android:id="@+id/editPayor1pct"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/endDatePicker"
+            android:layout_toEndOf="@id/editPayor1ID"
             android:hint="Payor 1 Percent"
             android:inputType="numberDecimal" />
 
@@ -76,43 +90,42 @@
             android:id="@+id/editNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/editPayor1pct"
             android:hint="Notes"
             android:inputType="textAutoCorrect" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <CheckBox
+            android:layout_below="@id/editNotes"
+            android:id="@+id/reoccurs"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:checked="false"
+            android:hint="Reoccurs every" />
 
-            <CheckBox
-                android:id="@+id/reoccurs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:hint="Reoccurs every" />
+        <NumberPicker
+            android:id="@+id/freq_num"
+            android:layout_below="@id/reoccurs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical" />
 
-            <NumberPicker
-                android:id="@+id/freq_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="vertical" />
-
-            <Spinner
-                android:id="@+id/frequency"
-                android:layout_width="158dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
+        <Spinner
+            android:id="@+id/frequency"
+            android:layout_below="@id/freq_num"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:spinnerMode="dropdown" />
 
         <Button
             android:id="@+id/submitBill"
+            android:layout_below="@id/frequency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:onClick="submitNewBill"
             android:text="Done" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>
