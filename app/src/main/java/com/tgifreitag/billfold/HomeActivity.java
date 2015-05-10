@@ -165,28 +165,7 @@ public class HomeActivity extends Activity {
             }
         });
     }
-    public void populateDB(View v)
-    {
-        db.open();
-        db.insertRecord("Tomorrow 1 - 5/6", "2015-05-06", "03", "67.34", "3/4/13", "3/4/17", "01", ".1", "My notes");
-        db.insertRecord("Tomorrow 2 - 5/6", "2015-05-06", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
-        db.insertRecord("Today 1 - 5/5", "2015-05-05", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
-        db.insertRecord("Today 2 - 5/5", "2015-05-05", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
-        db.insertRecord("Next Month - 6/1", "2015-06-01", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
-        db.insertRecord("Earlier This Week 5/4", "2015-05-04", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
-        db.insertRecord("This Week 1 - 5/7", "2015-05-07", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
-        db.insertRecord("Next Week 2 - 5/12", "2015-05-12", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
-        db.insertRecord("This Month 5/27", "2015-05-27", "03", "67.34", "3/4/13","3/4/17","01",".1","My notes");
-        db.insertRecord("Other 1 - 8/3", "2015-08-03", "14", "179.00", "7/1/12", "7/1/17", "01", ".1", "My super cool notes");
-        db.insertRecord("Other 2 - 10/4", "2015-10-04", "03", "67.34", "3/4/13", "3/4/17", "01", ".1", "My notes");
-        recreate();
-    }
 
-    public void clearAllBills(View v) {
-        db.deleteAllRecords();
-        db.open();
-        recreate();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -211,8 +190,9 @@ public class HomeActivity extends Activity {
     }
 
     public void billsClickHandler(MenuItem item) {
-        Intent i = new Intent(this, BillsActivity.class);
-        startActivity(i);
+        Intent openMainActivity= new Intent(this, BillsActivity.class);
+        openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(openMainActivity);
     }
 
     public void homeClickHandler(MenuItem item) {
@@ -222,6 +202,11 @@ public class HomeActivity extends Activity {
 
     public void peopleClickHandler(MenuItem item) {
         Intent i = new Intent(this, PeopleActivity.class);
+        startActivity(i);
+    }
+
+    public void settingsClickHandler(MenuItem item) {
+        Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }
 

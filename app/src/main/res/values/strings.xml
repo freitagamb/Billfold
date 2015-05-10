@@ -16,6 +16,9 @@
     <string name="action_people">People</string>
     <string name="action_settings">Settings</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="clearBills">Clear all data in database</string>
+    <string name="clearBillsBtn">Clear Database</string>
+
+    <string name="testData">Populate the database with sample data</string>
+    <string name="testDataBtn">Populate</string>
 </resources>

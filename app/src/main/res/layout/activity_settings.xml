@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/clearText"
+        style="@style/settingsDescription"
+        android:text="@string/clearBills" />
+
+    <Button
+        android:id="@+id/clearAllBills"
+        style="@style/settingsBtn"
+        android:layout_alignTop="@id/clearText"
+        android:layout_toEndOf="@id/clearText"
+        android:onClick="clearAllBills"
+        android:text="@string/clearBillsBtn" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@id/clearText"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/populateText"
+        style="@style/settingsDescription"
+        android:layout_below="@id/space"
+        android:text="@string/testData" />
+
+    <Button
+        android:id="@+id/populateDB"
+        style="@style/settingsBtn"
+        android:layout_alignTop="@id/populateText"
+        android:layout_below="@id/space"
+        android:layout_toEndOf="@id/populateText"
+        android:onClick="populateDB"
+        android:text="@string/testDataBtn" />
+
+
+</RelativeLayout>

@@ -20,23 +20,5 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:onClick="clearAllBills"
-        android:text="Clear All Bills"
-        android:id="@+id/clearAllBills"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:onClick="populateDB"
-        android:text="Populate Bills"
-        android:id="@+id/populateDB"
-        android:layout_gravity="center_horizontal" />
-
 </LinearLayout>
 

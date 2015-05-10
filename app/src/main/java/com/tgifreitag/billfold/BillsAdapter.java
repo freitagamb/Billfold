@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.BillsViewHolder> {
+
 
     protected List<BillsInfo> billList;
     public BillsAdapter(List<BillsInfo> billList) {
@@ -43,8 +45,6 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.BillsViewHol
         return new BillsViewHolder(itemView);
     }
 
-
-
     class BillsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView billName;
         TextView monthName;
@@ -62,6 +62,7 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.BillsViewHol
         }
 
         public void onClick(View v) {
+            Log.d("inonclick", "inOnclick");
             Context context = v.getContext();
             Intent intObj = new Intent(context,HomeActivity.class);
           //  intObj.putExtra("pos", (int) getPosition());

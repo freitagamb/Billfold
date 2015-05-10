@@ -50,7 +50,6 @@ public class NewBillActivity extends Activity implements DatePickerFragment.TheL
         newFragment.show(getFragmentManager(), "datePicker");
         Log.d("myID", "" + v.getId());
         btnID = v.getId();
-
     }
 
     public void submitNewBill(View v)

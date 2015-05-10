@@ -2,20 +2,6 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-e6c04fef9d05d8459011d1878aabc365d80a7bdf.jar" />
-    </item>
-    <item
-        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-4676889646508841522e647d07d79f7beb5b03c0.jar" />
-    </item>
-    <item
         jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -23,18 +9,60 @@
         <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-7cc0965503392e7f53b51f4bf59bceb703f51a58.jar" />
     </item>
     <item
-        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\classes.jar"
+        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.3.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-4800d978f757aa740548389f61889aa66a7ee0f5.jar" />
+        sha1="fe3e0c6de7cceed888b277487238b6af9a1cc299">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-3cfc2d5d98d33c8c451a540921a30249f4c40ee8.jar" />
     </item>
     <item
-        jar="D:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-34a57f82165fcc191123ae4d70b3d0379c72c265.jar" />
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-e6c04fef9d05d8459011d1878aabc365d80a7bdf.jar" />
+    </item>
+    <item
+        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-6e67ef7a3c5e113b595fb2a80431f514fc352738.jar" />
+    </item>
+    <item
+        jar="D:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-bd3cb8c1a85577fa47490bcd3ee855b23f87b15b.jar" />
+    </item>
+    <item
+        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-229296f941a0ff171a928338e7df5a9909dc49bd.jar" />
+    </item>
+    <item
+        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-140397b402724c9a8bc49f4ddb2ec85b62c47ad2.jar" />
+    </item>
+    <item
+        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6046e5cdaf799120b7c56a5a061d80e8854c4d34">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-b8d4d8833495553496ec9d6e4e4c901fae149578.jar" />
+    </item>
+    <item
+        jar="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b48d5c51a9a9e329005106b4667f54948de4d4d8">
+        <dex dex="C:\Users\lilsp_000\Documents\Dropbox\2015.Spring\CSIS290\Git\Billfold\app\build\intermediates\pre-dexed\debug\classes-cbdaf238e1a0745042419838fc3b2b60f5acbc66.jar" />
     </item>
 
 </items>

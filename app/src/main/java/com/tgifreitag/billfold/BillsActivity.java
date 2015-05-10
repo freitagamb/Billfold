@@ -3,12 +3,19 @@ package com.tgifreitag.billfold;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.wallet.Wallet;
+import com.google.android.gms.wallet.WalletConstants;
 
-public class BillsActivity extends Activity {
+import static com.google.android.gms.wallet.Wallet.API;
+
+
+public class BillsActivity extends Activity{
 
     DBAdapter db = new DBAdapter(this);
     private RecyclerView rv;
@@ -22,6 +29,14 @@ public class BillsActivity extends Activity {
         rv.setHasFixedSize(true);
         initializeAdapter();
         db.close();
+
+        /*GoogleApiClient client = new GoogleApiClient.Builder(this)
+                .addApi(Wallet.API, new Wallet.WalletOptions.Builder()
+                        .setTheme(WalletConstants.THEME_HOLO_LIGHT)
+                        .build())
+                .build();
+
+        client.connect(); */
     }
 
     private void initializeAdapter(){
@@ -30,9 +45,18 @@ public class BillsActivity extends Activity {
     }
 
     public void addNewBill(View v) {
-            Intent i = new Intent(this, NewBillActivity.class);
-            startActivity(i);
+        Intent openMainActivity= new Intent(this, NewBillActivity.class);
+        openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(openMainActivity);
     }
+
+    public void payBill(View v) {
+        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.apps.walletnfcrel");
+        startActivity(LaunchIntent);
+    }
+
+
+
 };
 
 
